@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnFlow</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400..800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></head>
+<body>
+    <nav>
+        <div class="logo"><i>|~</i>LearnFlow</div>
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search Courses...">
+                <button onclick="searchCourses()">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
+        </div>
+        <ul class="navLinks">
+            <li>
+                <a href="#">Home</a>
+            </li>
+            <li>
+                <a href="#">Courses</a>
+            </li>
+            <li>
+                <a href="#">Features</a>
+            </li>
+            <li>
+                <a href="#about" id="about">About</a>
+            </li>
+            <li>
+                <i class="fa-solid fa-moon" onclick="toggleTheme()"></i>
+            </li>
+            <li id="login">
+                <a href="login.html" class="login-btn">Login/Register</a>
+            </li>
+        </ul>
+    </nav>
+    <section class="section" id="features">
+        <div>
+            <h1>YOUR LEARNING JOURNEY STARTS HERE...</h1>
+            <p>Learn Smarter.</p>
+            <p>Grow Faster.</p>
+            <p id="description">
+                Discover structured courses, interactive lessons,
+                quizzes and progress tracking — all in one place.
+            </p>
+        </div>
+        <div class="buttons">
+            <button class="btn" href="#courses">Explore Courses</button>
+            <a href="register.html">
+                <button class="btn">Get Started &#x2192</button>
+            </a>
+        </div>
+        <ul class="feature-list">
+            <li>&#x2714 Learn at your pace</li>
+            <li>&#x2714 Track your progress</li>
+            <li>&#x2714 Interactive quizzes</li>
+            <li>&#x2714 Personalised dashboard</li>
+        </ul>
+    </section>
+    <section class="section dashboard-preview" >
+        <div>
+            <h1>LEARNING DASHBOARD</h1>
+            <p id="welcome">Welcome back, Alex! </p>
+        </div>
+        <div class="progress">
+            <p>Javascript Fundamentals</p>
+            <div class="bar">
+                <span style="width: 78%"></span>
+            </div>
+            <p>Python Basics</p>
+            <div class="bar">
+                <span style="width: 90%"></span>
+            </div>
+            <p>Data Structures & Algorithm</p>
+            <div class="bar">
+                <span style="width: 65%"></span>
+            </div>
+        </div>
+    </section>
+
+    <section class="proof-section">
+        <div class="proof-copy">
+            <h2>Turn your learning into proof</h2>
+            <p>Earn certificates and credentials that you can add to your resume and LinkedIn profile — and show the skills you’ve built with confidence.</p>
+        </div>
+        <div class="proof-visual">
+            <div class="mini-card mini-card-blue">Google<br>Analytics</div>
+            <div class="mini-card mini-card-light">IBM<br>Back-End</div>
+            <div class="mini-card mini-card-purple">Microsoft<br>Python</div>
+        </div>
+    </section>
+
+    <section class="proof-story">
+        <div class="story-copy">
+            <h2>Go from your first lesson to portfolio-ready work</h2>
+            <p>Learn by doing. Build projects with the same tools industry professionals use — and show what you’ve learned to employers.</p>
+        </div>
+        <div class="tool-badges">
+            <span class="tool-icon blue">X</span>
+            <span class="tool-icon dark">A</span>
+            <span class="tool-icon sky">C</span>
+            <span class="tool-icon purple">P</span>
+        </div>
+    </section>
+
+    <section class="testimonial-section">
+        <h2>Is LearnFlow worth it? Hear from our learners</h2>
+        <div class="testimonial-grid">
+            <article class="testimonial-card">
+                <div class="avatar avatar-one">A</div>
+                <p>“I have a full-time job and 3 kids, and I still managed to complete my first certification with LearnFlow. The platform makes it easy to stay consistent.”</p>
+                <div class="testimonial-author">
+                    <strong>Abigail P.</strong>
+                </div>
+            </article>
+
+            <article class="testimonial-card">
+                <div class="avatar avatar-two">S</div>
+                <p>“LearnFlow keeps me motivated to learn. With each course, I’m building real-world skills that I can apply in my current role.”</p>
+                <div class="testimonial-author">
+                    <strong>Shila F.</strong>
+                </div>
+            </article>
+
+            <article class="testimonial-card">
+                <div class="avatar avatar-three">M</div>
+                <p>“I really appreciate the flexibility. I can learn on my own time and still build strong momentum without feeling overwhelmed.”</p>
+                <div class="testimonial-author">
+                    <strong>Mike K.</strong>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-cta">
+            <div class="cta-brand">LearnFlow</div>
+            <div class="cta-copy">
+                <p>Start in minutes today</p>
+                <span>Build skills this week.</span>
+            </div>
+            <button class="cta-btn">Start 7-day free trial</button>
+        </div>
+
+        <div class="footer-links-wrap">
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Skills</h4>
+                    <ul>
+                        <li>Artificial Intelligence</li>
+                        <li>Cybersecurity</li>
+                        <li>Data Analysis</li>
+                        <li>Python</li>
+                        <li>SQL</li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Professional Certificates</h4>
+                    <ul>
+                        <li>Google Data Analytics</li>
+                        <li>IBM Data Science</li>
+                        <li>Meta Front-End</li>
+                        <li>Deep Learning</li>
+                        <li>Project Management</li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Career Resources</h4>
+                    <ul>
+                        <li>Career Advice</li>
+                        <li>Interview Prep</li>
+                        <li>Portfolio Tips</li>
+                        <li>Resume Help</li>
+                        <li>Learning Roadmaps</li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li>About</li>
+                        <li>Careers</li>
+                        <li>Press</li>
+                        <li>Privacy</li>
+                        <li>Contact</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 LearnFlow. All rights reserved.</p>
+            <div class="socials">
+                <i class="fa-brands fa-facebook-f"></i>
+                <i class="fa-brands fa-x-twitter"></i>
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-linkedin-in"></i>
+                <i class="fa-brands fa-youtube"></i>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

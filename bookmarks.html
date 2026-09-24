@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bookmarks - LearnFlow</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400..800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav>
+    <div class="logo"><i>|~</i>LearnFlow</div>
+    <div class="search-container">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search Bookmarks...">
+        <button onclick="searchCourses()"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+    </div>
+    <ul class="navLinks">
+      <li><a href="dashboard.html">Home</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li><a href="bookmarks.html">Bookmarks</a></li>
+      <li><i class="fa-solid fa-moon icon" onclick="toggleTheme()"></i></li>
+      <li id="logout"><span>Logout</span><i class="fa-solid fa-right-from-bracket"></i></li>
+    </ul>
+  </nav>
+
+  <div class="dashboard-layout">
+    <aside class="sidebar">
+      <a href="dashboard.html" class="sidebar-link">Dashboard</a>
+      <a href="courses.html" class="sidebar-link">Courses</a>
+      <a href="bookmarks.html" class="sidebar-link active">Bookmarks</a>
+      <a href="#" class="sidebar-link">Profile</a>
+    </aside>
+
+    <main class="dashboard-main">
+      <h2>Bookmarked Courses</h2>
+
+      <div class="filter-row">
+        <select id="categoryFilter">
+          <option value="all">All Categories</option>
+        </select>
+        <select id="difficultyFilter">
+          <option value="all">All Difficulties</option>
+          <option value="Beginner">Beginner</option>
+          <option value="Intermediate">Intermediate</option>
+          <option value="Advanced">Advanced</option>
+        </select>
+      </div>
+
+      <div id="allCoursesList" class="courses-grid"></div>
+    </main>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="storage.js"></script>
+  <script src="script.js"></script>
+  <script>
+    function renderBookmarkedCourses() {
+      const progress = loadProgress();
+      const bookmarkedIds = progress.bookmarkedCourses || [];
+      const bookmarkedCourses = courses.filter(course => bookmarkedIds.includes(course.id));
+
+      const searchTerm = document.getElementById("searchInput").value.toLowerCase();
+      const category = document.getElementById("categoryFilter").value;
+      const difficulty = document.getElementById("difficultyFilter").value;
+
+      const filtered = bookmarkedCourses.filter(course => {
+        const matchesSearch = course.title.toLowerCase().includes(searchTerm);
+        const matchesCategory = category === "all" || course.category === category;
+        const matchesDifficulty = difficulty === "all" || course.difficulty === difficulty;
+        return matchesSearch && matchesCategory && matchesDifficulty;
+      });
+
+      const courseList = document.getElementById("allCoursesList");
+      if (!filtered.length) {
+        courseList.innerHTML = '<p class="empty-state">No bookmarked courses yet.</p>';
+        return;
+      }
+
+      renderAllCourses(filtered);
+    }
+
+    function populateBookmarkFilters() {
+      const categoryFilter = document.getElementById("categoryFilter");
+      const categorySet = new Set(courses.map(course => course.category));
+
+      categorySet.forEach(category => {
+        const option = document.createElement("option");
+        option.value = category;
+        option.textContent = category;
+        categoryFilter.appendChild(option);
+      });
+    }
+
+    if (document.getElementById("allCoursesList")) {
+      populateBookmarkFilters();
+      renderBookmarkedCourses();
+
+      document.getElementById("searchInput").addEventListener("input", renderBookmarkedCourses);
+      document.getElementById("categoryFilter").addEventListener("change", renderBookmarkedCourses);
+      document.getElementById("difficultyFilter").addEventListener("change", renderBookmarkedCourses);
+    }
+  </script>
+</body>
+</html>

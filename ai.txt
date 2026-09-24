@@ -1,0 +1,175 @@
+I am starting a new session. Below is the comprehensive roadmap, architectural decisions, and current state of my vanilla JS Learning Management System ("LearnFlow"). 
+
+Please adopt the exact "Mentoring Approach" outlined at the bottom of the summary—do not write full solutions for me; guide me through the logic, watch for my common syntax errors, and help me implement the roadmap step-by-step.
+
+---
+
+## Current Code Snippets for Context
+
+Here is the exact code where my last session left off:
+
+### storage.js
+
+```javascript
+// storage.js will read/write this whole object under one localStorage key
+const userProgress = {
+  enrolledCourses: {
+    "js-fundamentals": {
+      completedLessons: [ "js-1"]
+    },
+    "dsa-fundamentals": {
+      completedLessons: [ "dsa-1" ]
+    },
+    "css-basics": {
+      completedLessons: []
+    }
+  },
+  quizResults: {
+    "quiz-js-fundamentals": {
+      score: 3,
+      totalQuestions: 4,
+      takenAt: "2026-09-14"
+    }
+  },
+  bookmarkedCourses: [ "css-basics" ],
+  bookmarkedLessons: [ "css-2" ]
+};
+
+const STORAGE_KEY = "lms_userProgress";
+
+function getDefaultProgress() {
+  return {
+    enrolledCourses: {},
+    quizResults: {},
+    bookmarkedCourses: [],
+    bookmarkedLessons: []
+  };
+}
+
+function markLessonComplete(courseId, lessonId) {
+  const progress = loadProgress();
+
+  if (progress.enrolledCourses[courseId] === undefined) {
+    progress.enrolledCourses[courseId] = { completedLessons: [lessonId] };
+  } else {
+    let check = progress.enrolledCourses[courseId].completedLessons.includes(lessonId);
+    if(!check){
+        progress.enrolledCourses[courseId].completedLessons.push(lessonId);
+    }
+  }
+  saveProgress(progress);
+}
+
+function loadProgress() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (!raw) return getDefaultProgress();
+  return JSON.parse(raw);
+}
+
+function saveProgress(progress) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+}
+
+const USERS_KEY = "lms_users";
+const CURRENT_USER_KEY = "lms_currentUser";
+
+function getUsers() {
+  const raw = localStorage.getItem(USERS_KEY);
+  if (!raw) return [];
+  return JSON.parse(raw);
+}
+
+function saveUsers(users) {
+  localStorage.setItem(USERS_KEY, JSON.stringify(users));
+}
+```
+
+
+Let's begin with next Step of the Roadmap: Finishing the `registerUser(name, email, password)` function. Review my code above and guide me on how to implement the `.some()` check.
+
+
+
+
+
+
+
+
+
+# LMS Project — Mentoring Summary & Roadmap
+
+**Project:** Learning Management System ("LearnFlow")
+**Stack:** HTML5, CSS3, JavaScript (ES6+), LocalStorage, JSON — no backend/framework
+**Learner profile:** Comfortable with JS basics, working on strengthening DOM/events; building a skeleton-first, then-polish approach
+**Timeline:** ~1–2 weeks
+
+---
+
+## Key Decisions Made
+
+- **Visual identity:** Dark-and-blue color palette, implemented as CSS custom properties (`:root` for dark defaults, `[data-theme="light"]` override), with a working light/dark toggle persisted to `localStorage`.
+- **File structure:** Static content (`courses`, `quizzes`) kept separate from dynamic user data (`userProgress`), matching a "content vs. state" split.
+- **Data model shape:**
+  - `courses`: array of course objects (`id`, `title`, `category`, `difficulty`, `description`, `lessons[]`).
+  - `quizzes`: array of quiz objects linked to a course via `courseId`, each with a `questions[]` array (`text`, `options[]`, `correctAnswerIndex`).
+  - `userProgress`: single object, nested per-course `completedLessons`, one **latest** quiz result per quiz (no history for now), separate `bookmarkedCourses` and `bookmarkedLessons` arrays.
+- **Persistence pattern:** every stateful feature follows the same **load → mutate → save** pattern against `localStorage` (`JSON.parse`/`JSON.stringify`, with a sensible default when nothing is stored yet).
+- **Authentication approach:** Since this is a pure front-end project, "login" is a **simulated session** — a `users` array in `localStorage` (name/email/password, explicitly *not* secure — worth a README note) plus a `currentUser` value marking who's "logged in." Protected pages will check `currentUser` before rendering and redirect to `login.html` if absent.
+- **Page split:** `index.html` will become the public landing page only; the dashboard moves to its own `dashboard.html`, gated behind the simulated login.
+
+---
+
+## Completed So Far
+
+### `data.js`
+- ✅ `courses` array: JavaScript Fundamentals, DSA Fundamentals, CSS Basics (set to Intermediate difficulty), each with 2–3 lessons using consistent id prefixes (`js-`, `dsa-`, `css-`).
+- ✅ `quizzes` array: one quiz per course, 4 questions each, all correctly linked via `courseId` (a duplicate-id/wrong-courseId bug on the CSS quiz was found and fixed).
+
+### `storage.js` — Progress layer
+- ✅ `getDefaultProgress()` — returns the empty-state shape.
+- ✅ `loadProgress()` / `saveProgress()` — read/write the whole `userProgress` object.
+- ✅ `markLessonComplete(courseId, lessonId)` — handles first-time course entries, avoids duplicate lesson ids via `.includes()`, and saves. Went through several rounds of debugging (object-vs-array confusion, unquoted identifiers, an infinite-recursion bug, incorrect array indexing) before landing on a correct, clean version.
+
+### `storage.js` — Users layer (in progress)
+- ✅ `getUsers()` — returns the users array, defaulting to `[]`.
+- ✅ `saveUsers(users)` — persists the array.
+- 🔜 `registerUser(name, email, password)` — in progress. Needs to use `.some()` to check for an existing email before pushing a new user object, then save and return a success/failure signal.
+
+### Landing page (`index.html` / `style.css` / `script.js`)
+- ✅ Converted hardcoded colors to CSS custom properties across nav, sections, buttons, icons, and the progress bar.
+- ✅ Fixed the `.bar` / `.bar span` fixed-pixel-margin bug that was causing progress bars to visually overflow their container.
+- ✅ Built and verified a working `applyTheme(theme)` / `toggleTheme()` pair, with theme choice persisted and restored correctly on page load.
+
+### Known bugs flagged but **not yet fixed** (left for later, per learner's choice):
+- `register.html`'s `<script class="script.js">` — wrong attribute, should be `src`.
+- Mismatched `<label>...</p>` tags in `login.html` and `register.html`.
+- "Explore Courses" `<button>` uses an invalid `href` attribute.
+- No `<form>` wrapper / submit handling on login or register forms yet.
+- `index.html`'s search button still calls an undefined `searchCourses()`.
+
+---
+
+## Next Steps / Roadmap
+
+1. **Finish `registerUser(name, email, password)`** — duplicate-email check via `.some()`, push new user, save, return success/failure.
+2. **Build the session layer:** `loginUser(email, password)` (looks up a matching user, sets `currentUser`), `logoutUser()`, and a `getCurrentUser()` / `requireLogin()` guard to redirect from protected pages.
+3. **Split `index.html`:** move the dashboard markup into its own `dashboard.html`, gated by the login check.
+4. **Static HTML/CSS layout pass (no logic yet)** for the remaining screens, reusing the theme variables and the card/sidebar pattern from the dashboard wireframe:
+   - Dashboard (in progress — next immediate step)
+   - Course list (reuses the card pattern from `index.html`)
+   - Course detail / lesson view
+   - Quiz page (different structure — one question at a time)
+   - Profile page
+5. **Wire up dynamic rendering** — replace hardcoded HTML with JS that renders courses/lessons from `data.js` (DOM manipulation practice, deliberately tackled early since it's the learner's identified weak spot).
+6. **Event handling** — navigation, "view course" buttons, live search/filter, category/difficulty dropdowns (event delegation).
+7. **Progress tracking UI** — hook `markLessonComplete` up to real "mark complete" buttons; recompute and render percentage progress.
+8. **Quiz system** — one-question-at-a-time rendering, answer selection, `setInterval` countdown timer, auto-scoring, saving results.
+9. **Bookmarks, notifications, profile form** — smaller features reinforcing patterns already built.
+10. **Polish pass** — CSS transitions/empty states, responsive breakpoint cleanup, and fixing the deferred bugs list above.
+
+---
+
+## Mentoring Approach (for continuity)
+
+- The learner writes the code; I review and point out bugs/misconceptions rather than supplying full solutions, except for pure boilerplate (e.g. the initial `loadProgress`/`saveProgress` pair) or CSS values that are a design decision rather than a logic exercise.
+- Recurring theme to watch for: **unquoted strings/identifiers** (e.g. `dark` instead of `"dark"`) — this has come up repeatedly and is worth flagging every time it recurs until it stops.
+- Also watch for: confusing objects with arrays (`.length`/`.push()` used on plain objects), and forgetting `let`/`const` when declaring new variables.

@@ -1,0 +1,14 @@
+<div class="icons">
+                <div class="icon">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="badge">3</span>
+                </div>
+                <div class="icon">
+                    <i class="fa-regular fa-user" >
+                        <a href="login.html"></a>
+                    </i>
+                </div>
+            </div>
+
+            icons same as badges
+            
