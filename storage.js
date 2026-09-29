@@ -151,8 +151,29 @@ function applyFilters() {
   renderAllCourses(filtered);
 }
 
-if (document.getElementById("searchInput")) {
+if (
+  document.getElementById("searchInput") &&
+  document.getElementById("categoryFilter") &&
+  document.getElementById("difficultyFilter")
+) {
   document.getElementById("searchInput").addEventListener("input", applyFilters);
   document.getElementById("categoryFilter").addEventListener("change", applyFilters);
   document.getElementById("difficultyFilter").addEventListener("change", applyFilters);
+}
+
+function updateCurrentUserName(newName) {
+  const currentUser = getCurrentUser();
+  if (!currentUser) return false;
+
+  const users = getUsers();
+  const index = users.findIndex(u => u.email === currentUser.email);
+  if (index === -1) return false;
+
+  users[index].name = newName;
+  saveUsers(users);
+
+  currentUser.name = newName;
+  localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(currentUser));
+
+  return true;
 }

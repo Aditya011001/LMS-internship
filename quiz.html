@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz | LearnFlow</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Sora:wght@400..800&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <nav>
+    <div class="logo"><i class="fa-solid fa-code"></i>LearnFlow</div>
+    <ul class="navLinks">
+      <li id="homeLink"><a href="dashboard.html">Home</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li><a href="bookmarks.html">Bookmarks</a></li>
+      <li><i class="fa-solid fa-moon icon" onclick="toggleTheme()"></i></li>
+      <li id="authNav"></li>
+    </ul>
+  </nav>
+
+  <main class="quiz-container" id="quizRoot"></main>
+
+  <script src="data.js"></script>
+  <script src="storage.js"></script>
+  <script src="script.js"></script>
+  <script src="quiz.js"></script>
+</body>
+
+</html>

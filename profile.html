@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile | LearnFlow</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Sora:wght@400..800&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <nav>
+        <div class="logo"><i class="fa-solid fa-code"></i>LearnFlow</div>
+        <ul class="navLinks">
+            <li id="homeLink"><a href="dashboard.html">Home</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="bookmarks.html">Bookmarks</a></li>
+            <li><i class="fa-solid fa-moon icon" onclick="toggleTheme()"></i></li>
+            <li id="authNav"></li>
+        </ul>
+    </nav>
+
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <a href="dashboard.html" class="sidebar-link">Dashboard</a>
+            <a href="courses.html" class="sidebar-link">Courses</a>
+            <a href="bookmarks.html" class="sidebar-link">Bookmarks</a>
+            <a href="profile.html" class="sidebar-link active">Profile</a>
+        </aside>
+
+        <main class="dashboard-main">
+            <h2>My Profile</h2>
+
+            <div class="quiz-card profile-card">
+                <div class="profile-avatar" id="profileAvatar"></div>
+
+                <div class="profile-field">
+                    <label for="profileName">Name</label>
+                    <input type="text" id="profileName">
+                </div>
+
+                <div class="profile-field">
+                    <label for="profileEmail">Email</label>
+                    <input type="text" id="profileEmail" disabled>
+                </div>
+
+                <p class="quiz-muted" id="profileStats"></p>
+
+                <button class="btn" id="saveProfileBtn">Save Changes</button>
+                <p class="profile-saved" id="profileSaved">Saved!</p>
+            </div>
+        </main>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="storage.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

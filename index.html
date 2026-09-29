@@ -1,33 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LearnFlow</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400..800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></head>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Sora:wght@400..800&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
 <body>
     <nav>
-        <div class="logo"><i>|~</i>LearnFlow</div>
+        <div class="logo"><i class="fa-solid fa-code"></i>LearnFlow</div>
         <div class="search-container">
             <div class="search-box">
                 <input type="text" id="searchInput" placeholder="Search Courses...">
-                <button onclick="searchCourses()">
+                <button>
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </div>
         </div>
         <ul class="navLinks">
-            <li>
-                <a href="#">Home</a>
-            </li>
-            <li>
-                <a href="#">Courses</a>
-            </li>
-            <li>
-                <a href="#">Features</a>
-            </li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="#features">Features</a></li>
             <li>
                 <a href="#about" id="about">About</a>
             </li>
@@ -39,7 +38,7 @@
             </li>
         </ul>
     </nav>
-    <section class="section" id="features">
+    <section class="hero" id="features">
         <div>
             <h1>YOUR LEARNING JOURNEY STARTS HERE...</h1>
             <p>Learn Smarter.</p>
@@ -50,10 +49,8 @@
             </p>
         </div>
         <div class="buttons">
-            <button class="btn" href="#courses">Explore Courses</button>
-            <a href="register.html">
-                <button class="btn">Get Started &#x2192</button>
-            </a>
+            <a href="courses.html" class="btn">Explore Courses</a>
+            <a href="register.html" class="btn">Get Started &#x2192;</a>
         </div>
         <ul class="feature-list">
             <li>&#x2714 Learn at your pace</li>
@@ -62,21 +59,32 @@
             <li>&#x2714 Personalised dashboard</li>
         </ul>
     </section>
-    <section class="section dashboard-preview" >
+    <section class="section dashboard-preview">
         <div>
             <h1>LEARNING DASHBOARD</h1>
             <p id="welcome">Welcome back, Alex! </p>
         </div>
         <div class="progress">
-            <p>Javascript Fundamentals</p>
+            <div class="progress-row">
+                <p>Javascript Fundamentals</p>
+                <span class="progress-value">78%</span>
+            </div>
             <div class="bar">
                 <span style="width: 78%"></span>
             </div>
-            <p>Python Basics</p>
+
+            <div class="progress-row">
+                <p>Python Basics</p>
+                <span class="progress-value">90%</span>
+            </div>
             <div class="bar">
                 <span style="width: 90%"></span>
             </div>
-            <p>Data Structures & Algorithm</p>
+
+            <div class="progress-row">
+                <p>Data Structures &amp; Algorithm</p>
+                <span class="progress-value">65%</span>
+            </div>
             <div class="bar">
                 <span style="width: 65%"></span>
             </div>
@@ -86,7 +94,8 @@
     <section class="proof-section">
         <div class="proof-copy">
             <h2>Turn your learning into proof</h2>
-            <p>Earn certificates and credentials that you can add to your resume and LinkedIn profile — and show the skills you’ve built with confidence.</p>
+            <p>Earn certificates and credentials that you can add to your resume and LinkedIn profile — and show the
+                skills you’ve built with confidence.</p>
         </div>
         <div class="proof-visual">
             <div class="mini-card mini-card-blue">Google<br>Analytics</div>
@@ -98,7 +107,8 @@
     <section class="proof-story">
         <div class="story-copy">
             <h2>Go from your first lesson to portfolio-ready work</h2>
-            <p>Learn by doing. Build projects with the same tools industry professionals use — and show what you’ve learned to employers.</p>
+            <p>Learn by doing. Build projects with the same tools industry professionals use — and show what you’ve
+                learned to employers.</p>
         </div>
         <div class="tool-badges">
             <span class="tool-icon blue">X</span>
@@ -113,7 +123,8 @@
         <div class="testimonial-grid">
             <article class="testimonial-card">
                 <div class="avatar avatar-one">A</div>
-                <p>“I have a full-time job and 3 kids, and I still managed to complete my first certification with LearnFlow. The platform makes it easy to stay consistent.”</p>
+                <p>“I have a full-time job and 3 kids, and I still managed to complete my first certification with
+                    LearnFlow. The platform makes it easy to stay consistent.”</p>
                 <div class="testimonial-author">
                     <strong>Abigail P.</strong>
                 </div>
@@ -121,7 +132,8 @@
 
             <article class="testimonial-card">
                 <div class="avatar avatar-two">S</div>
-                <p>“LearnFlow keeps me motivated to learn. With each course, I’m building real-world skills that I can apply in my current role.”</p>
+                <p>“LearnFlow keeps me motivated to learn. With each course, I’m building real-world skills that I can
+                    apply in my current role.”</p>
                 <div class="testimonial-author">
                     <strong>Shila F.</strong>
                 </div>
@@ -129,7 +141,8 @@
 
             <article class="testimonial-card">
                 <div class="avatar avatar-three">M</div>
-                <p>“I really appreciate the flexibility. I can learn on my own time and still build strong momentum without feeling overwhelmed.”</p>
+                <p>“I really appreciate the flexibility. I can learn on my own time and still build strong momentum
+                    without feeling overwhelmed.”</p>
                 <div class="testimonial-author">
                     <strong>Mike K.</strong>
                 </div>
@@ -208,4 +221,5 @@
     </footer>
     <script src="script.js"></script>
 </body>
+
 </html>
