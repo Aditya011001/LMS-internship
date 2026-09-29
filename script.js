@@ -3,6 +3,13 @@ function applyTheme(theme) {
     localStorage.setItem("data-theme", theme);
 }
 
+const menuToggle = document.getElementById("menuToggle");
+if (menuToggle) {
+    menuToggle.addEventListener("click", function () {
+        document.getElementById("navLinks").classList.toggle("open");
+    });
+}
+
 function toggleTheme() {
     let current_theme = document.documentElement.getAttribute("data-theme");
     if (current_theme == "dark") {

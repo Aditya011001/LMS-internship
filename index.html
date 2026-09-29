@@ -15,6 +15,7 @@
 <body>
     <nav>
         <div class="logo"><i class="fa-solid fa-code"></i>LearnFlow</div>
+
         <div class="search-container">
             <div class="search-box">
                 <input type="text" id="searchInput" placeholder="Search Courses...">
@@ -23,19 +24,18 @@
                 </button>
             </div>
         </div>
-        <ul class="navLinks">
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <ul class="navLinks" id="navLinks">
             <li><a href="index.html">Home</a></li>
             <li><a href="courses.html">Courses</a></li>
             <li><a href="#features">Features</a></li>
-            <li>
-                <a href="#about" id="about">About</a>
-            </li>
-            <li>
-                <i class="fa-solid fa-moon" onclick="toggleTheme()"></i>
-            </li>
-            <li id="login">
-                <a href="login.html" class="login-btn">Login/Register</a>
-            </li>
+            <li><a href="#about" id="about">About</a></li>
+            <li><i class="fa-solid fa-moon" onclick="toggleTheme()"></i></li>
+            <li id="login"><a href="login.html" class="login-btn">Login/Register</a></li>
         </ul>
     </nav>
     <section class="hero" id="features">
